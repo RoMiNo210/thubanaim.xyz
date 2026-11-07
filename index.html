@@ -1430,4 +1430,30 @@ body{overflow-x:hidden}
  });
 })();
 </script>
+
+<style id="layout-hotfix">
+/* FIX: tránh menu quản trị bị ép thành cột siêu hẹp trong thanh điều hướng */
+.nav{position:relative;flex-wrap:nowrap;min-width:0}
+.nav .menu-toggle{display:grid!important;place-items:center;flex:none;order:2;margin-left:auto;min-width:44px;min-height:44px}
+.nav .links{display:none!important;position:absolute!important;top:calc(100% + 8px)!important;left:auto!important;right:0!important;width:min(390px,calc(100vw - 28px))!important;max-width:calc(100vw - 28px);max-height:75vh;overflow-x:hidden!important;overflow-y:auto!important;flex:0 1 auto!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:5px!important;padding:10px!important;background:#090923!important;border:1px solid #6543bb!important;border-radius:14px!important;box-shadow:0 14px 38px #000b!important;z-index:500}
+.nav .links.menu-open{display:flex!important}
+.nav .links>a{display:block;flex:none;width:100%;padding:12px 14px!important;white-space:normal}
+.nav .adm-menu{display:block;width:100%;max-width:none;min-width:0;flex:0 0 auto;margin:8px 0 0;padding:12px;box-sizing:border-box}
+.nav .adm-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:100%}
+.nav .adm-tile{width:100%;min-width:0;min-height:72px;white-space:normal;overflow-wrap:anywhere}
+.nav-search{order:3;flex:0 1 190px;min-width:0}
+.nav-search input{min-width:0;width:100%}
+.wallet-badge{order:4;flex:none}
+#loginBtn{order:5;flex:none;white-space:nowrap}
+@media(max-width:650px){
+ .nav{flex-wrap:wrap}
+ .nav .menu-toggle{order:2}
+ .nav .links{left:0!important;right:0!important;top:calc(100% + 6px)!important;width:100%!important;max-width:100%;}
+ .nav-search{display:none;order:6}
+ .wallet-badge{order:3}
+ #loginBtn{order:4}
+}
+@media(prefers-reduced-motion:reduce){.nav .links,.nav .adm-menu,.nav .adm-tile{scroll-behavior:auto;transition:none!important;animation:none!important}}
+</style>
+
 </body></html>
